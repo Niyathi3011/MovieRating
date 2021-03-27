@@ -1,12 +1,8 @@
 package movierating.services;
 
-import movierating.repositories.Repository;
+import movierating.repositories.UserRepository;
 
-public class UserService {
+public interface UserService {
 
-    private final Repository repository;
-
-    public UserService(Repository repository) {
-        this.repository = repository;
-    }
+    public void addUser();
 }

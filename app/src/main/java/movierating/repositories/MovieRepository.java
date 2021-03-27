@@ -1,10 +1,11 @@
 package movierating.repositories;
 
 import movierating.models.Movie;
+import movierating.models.User;
 
 import java.util.List;
 
-public class MovieRepository implements  Repository{
+public class MovieRepository {
 
     private final List<Movie> movieList;
 

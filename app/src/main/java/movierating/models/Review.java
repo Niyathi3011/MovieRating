@@ -2,8 +2,8 @@ package movierating.models;
 
 public class Review {
 
-    public final User user;
-    public final int rating;
+    private final User user;
+    private final int rating;
 
     public Review(User user, int rating) {
         this.user = user;

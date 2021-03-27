@@ -1,12 +1,9 @@
 package movierating.services;
 
-import movierating.repositories.Repository;
+import movierating.repositories.MovieRepository;
+import movierating.repositories.UserRepository;
 
-public class ReviewService {
+public interface ReviewService {
 
-    private final Repository repository;
-
-    public ReviewService(Repository repository) {
-        this.repository = repository;
-    }
+    public void addReview();
 }

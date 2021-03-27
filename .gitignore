@@ -1,5 +1,5 @@
 # Ignore Gradle project-specific cache directory
 .gradle
-
+<?xml version="1.0" encoding="UTF-8"?>
 # Ignore Gradle build output directory
 build

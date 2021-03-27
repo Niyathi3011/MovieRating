@@ -18,11 +18,11 @@ public class ReviewServiceImpl1 implements ReviewService {
 
 
     @Override
-    public void addReview(String[] fields) {
+    public void addReview(String userName, String movieName, int rating) {
 
         int userIndex = -1, i = 0;
         for (User user : userRepository.getUserList()) {
-            if (user.getUserName().equals(fields[1])) {
+            if (user.getUserName().equals(userName)) {
                 userIndex = i;
                 break;
             }
@@ -36,8 +36,8 @@ public class ReviewServiceImpl1 implements ReviewService {
 
         int movieIndex = -1, j = 0;
         for (Movie movie : movieRepository.getMovieList()) {
-            if (movie.getMovieName().equals(fields[2])) {
-                movie.getReviewList().add(new Review(userRepository.getUserList().get(userIndex), Integer.valueOf(fields[3])));
+            if (movie.getMovieName().equals(movieName)) {
+                movie.getReviewList().add(new Review(userRepository.getUserList().get(userIndex), Integer.valueOf(rating)));
                 movieIndex = j;
                 break;
             }

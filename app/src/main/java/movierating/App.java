@@ -4,7 +4,6 @@
 package movierating;
 
 import movierating.models.Movie;
-import movierating.models.MovieTestCase;
 import movierating.models.User;
 import movierating.repositories.MovieRepository;
 import movierating.repositories.UserRepository;
@@ -60,7 +59,10 @@ public class App {
                     userService.addUser(user);
                 }
                 case "add_review": {
-                    reviewService.addReview(fields);
+                    String userName = fields[1];
+                    String movieName = fields[2];
+                    int rating = Integer.valueOf(fields[3]);
+                    reviewService.addReview(userName, movieName, rating);
                 }
             }
 

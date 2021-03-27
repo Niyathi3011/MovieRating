@@ -7,5 +7,5 @@ import movierating.repositories.UserRepository;
 
 public interface ReviewService {
 
-    public void addReview(String[] fields);
+    public void addReview(String userName, String movieName, int rating);
 }

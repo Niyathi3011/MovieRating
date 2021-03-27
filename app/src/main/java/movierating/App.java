@@ -41,7 +41,7 @@ public class App {
         MovieService movieService = new MovieServiceImpl1(movieRepository);
         ReviewService reviewService = new ReviewServiceImpl1(userRepository, movieRepository);
         UserService userService = new UserServiceImpl1(userRepository);
-
+        AverageReviewScoreByYear averageReviewScore=new AverageReviewScoreByYear(movieRepository);
         for (String test : getTestCases()) {
 
             test = test.replaceAll("\\p{P}", " ");
@@ -64,6 +64,7 @@ public class App {
                     int rating = Integer.valueOf(fields[3]);
                     reviewService.addReview(userName, movieName, rating);
                 }
+
             }
 
         }

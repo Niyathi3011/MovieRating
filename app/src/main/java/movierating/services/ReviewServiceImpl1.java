@@ -3,6 +3,7 @@ package movierating.services;
 import movierating.models.Movie;
 import movierating.models.Review;
 import movierating.models.User;
+import movierating.models.UserType;
 import movierating.repositories.MovieRepository;
 import movierating.repositories.UserRepository;
 
@@ -38,6 +39,12 @@ public class ReviewServiceImpl1 implements ReviewService {
         }
 
         movie.getReviewList().add(review);
+
+        if (user.getUserType() == UserType.VIEWER)
+            movie.incrementTotalReviewScore(rating);
+        else if (user.getUserType() == UserType.CRITIC)
+            movie.incrementTotalReviewScore(rating * 2);
+
         user.incrementTotalReviewsAndPromoteUserType();
 
     }

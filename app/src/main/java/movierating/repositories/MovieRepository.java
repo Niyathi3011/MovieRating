@@ -3,17 +3,20 @@ package movierating.repositories;
 import movierating.models.Movie;
 import movierating.models.User;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MovieRepository {
 
-    private final List<Movie> movieList;
+    private Map<String, Movie> movies;
 
-    public MovieRepository(List<Movie> movieList) {
-        this.movieList = movieList;
+    public MovieRepository() {
+        this.movies = new HashMap<>();
     }
 
-    public List<Movie> getMovieList() {
-        return movieList;
+    public Map<String,Movie> getMovies() {
+        return movies;
     }
 }

@@ -3,12 +3,71 @@
  */
 package movierating;
 
+import movierating.models.Movie;
+import movierating.models.User;
+import movierating.repositories.MovieRepository;
+import movierating.repositories.UserRepository;
+import movierating.services.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+
+    public static List<String> getTestCases() {
+
+        List<String> testCasesList = new ArrayList<>();
+
+        testCasesList.add("Add Movie(\"Don\" released in Year 2006 for Genres “Action” & “Comedy”)");
+        testCasesList.add("AddMovie(\"Tiger\"releasedinYear2008forGenre“Drama”)");
+        testCasesList.add("Add Movie(\"Padmaavat\" released in Year 2006 for Genre “Comedy”)");
+        testCasesList.add("Add User(“SRK”)");
+        testCasesList.add("Add User(“Salman”)");
+        testCasesList.add("Add User(“Deepika”)");
+        testCasesList.add("add_review(“SRK”, “Don”, 2)");
+        testCasesList.add("add_review(“SRK”, “Padmaavat”, 8)");
+        testCasesList.add("add_review(“Salman”, “Lunchbox”, 5)");
+        testCasesList.add("add_review(“SRK”, “Don”, 10)");
+
+        return testCasesList;
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+
+        MovieRepository movieRepository = new MovieRepository();
+        UserRepository userRepository = new UserRepository();
+
+        MovieService movieService = new MovieServiceImpl1(movieRepository);
+        ReviewService reviewService = new ReviewServiceImpl1(userRepository, movieRepository);
+        UserService userService = new UserServiceImpl1(userRepository);
+        AverageReviewScoreByYear averageReviewScore=new AverageReviewScoreByYear(movieRepository);
+        for (String test : getTestCases()) {
+
+            test = test.replaceAll("\\p{P}", " ");
+            String[] fields = test.split("");
+
+            switch (fields[0]) {
+
+                case "Add Movie": {
+
+                    Movie movie = new Movie(fields[0], Integer.valueOf(fields[4]), fields[7]);
+                    movieService.addMovie(movie);
+                }
+                case "Add User": {
+                    User user = new User(fields[1]);
+                    userService.addUser(user);
+                }
+                case "add_review": {
+                    String userName = fields[1];
+                    String movieName = fields[2];
+                    int rating = Integer.valueOf(fields[3]);
+                    reviewService.addReview(userName, movieName, rating);
+                }
+
+            }
+
+        }
+
     }
 }

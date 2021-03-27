@@ -9,7 +9,7 @@ public class Movie {
     private final int releaseYear;
     private final List<Review> reviewList;
     private final String genre;
-    private int averageReviewScore;
+    private int totalReviewScore;
 
 
     public Movie(String movieName, int releaseYear, String genre) {
@@ -17,7 +17,7 @@ public class Movie {
         this.releaseYear = releaseYear;
         this.genre = genre;
         this.reviewList = new ArrayList<>();
-        this.averageReviewScore = 0;
+        this.totalReviewScore = 0;
     }
 
     public String getMovieName() {
@@ -33,8 +33,17 @@ public class Movie {
     }
 
     public int getAverageReviewScore() {
-        return averageReviewScore;
 
+        return this.getTotalReviewScore() / reviewList.size();
+
+    }
+
+    public int getTotalReviewScore() {
+        return totalReviewScore;
+    }
+
+    public void incrementTotalReviewScore(int rating) {
+        totalReviewScore += rating;
     }
 
     public List<Review> getReviewList() {

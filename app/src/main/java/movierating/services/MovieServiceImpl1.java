@@ -1,5 +1,6 @@
 package movierating.services;
 
+import movierating.models.Movie;
 import movierating.repositories.MovieRepository;
 
 public class MovieServiceImpl1 implements MovieService {
@@ -13,7 +14,7 @@ public class MovieServiceImpl1 implements MovieService {
 
 
     @Override
-    public void addMovie(String[] strings) {
-
+    public void addMovie(Movie movie) {
+        movieRepository.getMovieList().add(movie);
     }
 }

@@ -1,5 +1,6 @@
 package movierating.services;
 
+import movierating.models.User;
 import movierating.repositories.UserRepository;
 
 public class UserServiceImpl1 implements UserService {
@@ -10,9 +11,8 @@ public class UserServiceImpl1 implements UserService {
         this.userRepository = userRepository;
     }
 
-
     @Override
-    public void addUser(String[] strings) {
-
+    public void addUser(User user) {
+        userRepository.getUserList().add(user);
     }
 }

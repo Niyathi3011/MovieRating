@@ -12,7 +12,7 @@ public class UserServiceImpl1 implements UserService {
 
 
     @Override
-    public void addUser() {
+    public void addUser(String[] strings) {
 
     }
 }

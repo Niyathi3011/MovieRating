@@ -3,12 +3,26 @@
  */
 package movierating;
 
+import movierating.repositories.MovieRepository;
+import movierating.repositories.UserRepository;
+import movierating.services.*;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        MovieRepository movieRepository =new MovieRepository();
+        UserRepository userRepository=new UserRepository();
+
+        MovieService movieService=new MovieServiceImpl1(movieRepository);
+        ReviewService reviewService=new ReviewServiceImpl1(userRepository, movieRepository);
+        UserService userService =new UserServiceImpl1(userRepository);
+
+        String[] strings =new String[]{"DON","SRK", "2"};
+
+        reviewService.addReview(strings);
+
+
+
     }
 }

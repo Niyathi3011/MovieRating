@@ -15,7 +15,7 @@ public class ReviewServiceImpl1 implements ReviewService {
 
 
     @Override
-    public void addReview() {
+    public void addReview(String[] strings) {
 
     }
 }

@@ -4,5 +4,5 @@ import movierating.repositories.UserRepository;
 
 public interface UserService {
 
-    public void addUser();
+    public void addUser(String[] strings);
 }

@@ -6,6 +6,6 @@ import movierating.repositories.UserRepository;
 public interface MovieService {
 
 
-    public void addMovie();
+    public void addMovie(String[] input);
 
 }

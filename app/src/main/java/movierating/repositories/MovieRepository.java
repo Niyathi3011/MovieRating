@@ -3,14 +3,15 @@ package movierating.repositories;
 import movierating.models.Movie;
 import movierating.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieRepository {
 
-    private final List<Movie> movieList;
+    private List<Movie> movieList;
 
-    public MovieRepository(List<Movie> movieList) {
-        this.movieList = movieList;
+    public MovieRepository() {
+        this.movieList = new ArrayList<>();
     }
 
     public List<Movie> getMovieList() {

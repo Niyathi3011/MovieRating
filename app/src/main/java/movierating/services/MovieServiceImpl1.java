@@ -13,7 +13,7 @@ public class MovieServiceImpl1 implements MovieService {
 
 
     @Override
-    public void addMovie() {
+    public void addMovie(String[] strings) {
 
     }
 }

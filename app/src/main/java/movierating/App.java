@@ -28,6 +28,8 @@ public class App {
         testCasesList.add("add_review(“SRK”, “Padmaavat”, 8)");
         testCasesList.add("add_review(“Salman”, “Lunchbox”, 5)");
         testCasesList.add("add_review(“SRK”, “Don”, 10)");
+        testCasesList.add("AverageReviewScoreByYear 2006");
+        testCasesList.add("AverageReviewScoreByName DON");
 
         return testCasesList;
     }
@@ -41,7 +43,9 @@ public class App {
         MovieService movieService = new MovieServiceImpl1(movieRepository);
         ReviewService reviewService = new ReviewServiceImpl1(userRepository, movieRepository);
         UserService userService = new UserServiceImpl1(userRepository);
-        AverageReviewScoreByYear averageReviewScore=new AverageReviewScoreByYear(movieRepository);
+        AverageReviewScoreByYear averageReviewScoreByYear = new AverageReviewScoreByYear(movieRepository);
+        AverageReviewScoreForMovie averageReviewScoreForMovie = new AverageReviewScoreForMovie(movieRepository);
+
         for (String test : getTestCases()) {
 
             test = test.replaceAll("\\p{P}", " ");
@@ -63,6 +67,16 @@ public class App {
                     String movieName = fields[2];
                     int rating = Integer.valueOf(fields[3]);
                     reviewService.addReview(userName, movieName, rating);
+                }
+
+                case "averageReviewScoreByYear": {
+                    int releaseYear = Integer.valueOf(fields[1]);
+                    averageReviewScoreByYear.getAverageReviewScoreByYear(releaseYear);
+                }
+
+                case "averageReviewScoreByMovie": {
+                    String movieName = fields[1];
+                    averageReviewScoreForMovie.getAverageReviewScoreForMovie(movieName);
                 }
 
             }

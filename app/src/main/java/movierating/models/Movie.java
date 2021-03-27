@@ -32,9 +32,9 @@ public class Movie {
         return genre;
     }
 
-    public int getAverageReviewScore() {
+    public double getAverageReviewScore() {
 
-        return this.getTotalReviewScore() / reviewList.size();
+        return (double) this.getTotalReviewScore() / reviewList.size();
 
     }
 

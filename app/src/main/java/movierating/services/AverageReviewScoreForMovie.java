@@ -11,16 +11,13 @@ public class AverageReviewScoreForMovie {
         this.movieRepository = movieRepository;
     }
 
-    public int getAverageReviewScoreByYear(int releaseYear){
+    public double getAverageReviewScoreForMovie(String movieName) {
 
-        int reviewScore=0,count=0;
-        for(Movie movie : movieRepository.getMovies().values()){
-            if(movie.getReleaseYear()==releaseYear){
-                count+=movie.getReviewList().size();
-                reviewScore+=movie.getTotalReviewScore();
-            }
+        if (movieRepository.getMovies() != null && movieRepository.getMovies().containsKey(movieName))
+            return movieRepository.getMovies().get(movieName).getAverageReviewScore();
+        else {
+            System.out.println("Movie is not released yet!");
+            return 0;
         }
-
-        return reviewScore/count;
     }
 }

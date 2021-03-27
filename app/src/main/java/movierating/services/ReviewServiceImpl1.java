@@ -33,6 +33,7 @@ public class ReviewServiceImpl1 implements ReviewService {
         }
 
         movie.getReviewList().add(review);
+        user.incrementTotalReviewsAndPromoteUserType();
 
     }
 }

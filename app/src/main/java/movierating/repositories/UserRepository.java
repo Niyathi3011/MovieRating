@@ -20,4 +20,11 @@ public class UserRepository {
     public Map<String, User> getUsers() {
         return users;
     }
+
+    @Override
+    public String toString() {
+        return "UserRepository{" +
+                "users=" + users +
+                '}';
+    }
 }

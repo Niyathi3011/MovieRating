@@ -68,13 +68,16 @@ public class App {
                     int rating = Integer.valueOf(fields[3]);
                     reviewService.addReview(userName, movieName, rating);
                 }
+            }
 
-                case "averageReviewScoreByYear": {
+            switch (fields[0]) {
+
+                case "AverageReviewScoreByYear": {
                     int releaseYear = Integer.valueOf(fields[1]);
                     averageReviewScoreByYear.getAverageReviewScoreByYear(releaseYear);
                 }
 
-                case "averageReviewScoreByMovie": {
+                case "AverageReviewScoreByMovie": {
                     String movieName = fields[1];
                     averageReviewScoreForMovie.getAverageReviewScoreForMovie(movieName);
                 }

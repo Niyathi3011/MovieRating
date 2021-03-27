@@ -16,5 +16,6 @@ public class MovieServiceImpl1 implements MovieService {
     @Override
     public void addMovie(Movie movie) {
         movieRepository.getMovies().put(movie.getMovieName(), movie);
+        movieRepository.toString();
     }
 }

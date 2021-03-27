@@ -13,6 +13,6 @@ public class UserServiceImpl1 implements UserService {
 
     @Override
     public void addUser(User user) {
-        this.userRepository.getUserList().put(user.getUserName(), user);
+        this.userRepository.getUsers().put(user.getUserName(), user);
     }
 }

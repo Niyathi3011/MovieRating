@@ -10,13 +10,13 @@ import java.util.Map;
 
 public class MovieRepository {
 
-    private Map<String, Movie> movieMap;
+    private Map<String, Movie> movies;
 
     public MovieRepository() {
-        this.movieMap = new HashMap<>();
+        this.movies = new HashMap<>();
     }
 
-    public Map<String,Movie> getMovieList() {
-        return movieMap;
+    public Map<String,Movie> getMovies() {
+        return movies;
     }
 }

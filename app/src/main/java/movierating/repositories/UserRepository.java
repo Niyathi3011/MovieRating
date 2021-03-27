@@ -10,14 +10,14 @@ import java.util.Map;
 
 public class UserRepository {
 
-    private Map<String, User> userMap;
+    private Map<String, User> users;
 
 
     public UserRepository() {
-        this.userMap = new HashMap<>();
+        this.users = new HashMap<>();
     }
 
-    public Map<String, User> getUserList() {
-        return userMap;
+    public Map<String, User> getUsers() {
+        return users;
     }
 }

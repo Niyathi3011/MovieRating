@@ -4,18 +4,20 @@ import movierating.models.Movie;
 import movierating.models.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserRepository {
 
-    private List<User> userList;
+    private Map<String, User> userMap;
 
 
     public UserRepository() {
-        this.userList = new ArrayList<>();
+        this.userMap = new HashMap<>();
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public Map<String, User> getUserList() {
+        return userMap;
     }
 }

@@ -20,31 +20,19 @@ public class ReviewServiceImpl1 implements ReviewService {
     @Override
     public void addReview(String userName, String movieName, int rating) {
 
-        int userIndex = -1, i = 0;
-        for (User user : userRepository.getUserList()) {
-            if (user.getUserName().equals(userName)) {
-                userIndex = i;
-                break;
-            }
-            i++;
+        User user = this.userRepository.getUserList().get(userName);
+        if (user == null) {
+            System.out.println("He is not a user of this Service");
+            return;
         }
-
-        if (userIndex == -1) {
-            System.out.println("He is not a user of the service");
+        Review review = new Review(user, rating);
+        Movie movie = this.movieRepository.getMovieList().get(movieName);
+        if (movie == null) {
+            System.out.println("Movie is not released yet");
             return;
         }
 
-        int movieIndex = -1, j = 0;
-        for (Movie movie : movieRepository.getMovieList()) {
-            if (movie.getMovieName().equals(movieName)) {
-                movie.getReviewList().add(new Review(userRepository.getUserList().get(userIndex), Integer.valueOf(rating)));
-                movieIndex = j;
-                break;
-            }
-            j++;
-        }
+        movie.getReviewList().add(review);
 
-        if (movieIndex == -1)
-            System.out.println("Movie is not released yet");
     }
 }

@@ -19,7 +19,7 @@ public class User {
         return userType;
     }
 
-    public void reviewCount() {
+    public void incrementTotalReviewsAndPromoteUserType() {
         this.totalReviews++;
         if (this.totalReviews == 3) {
             this.userType = UserType.CRITIC;

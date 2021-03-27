@@ -36,6 +36,7 @@ public class ReviewServiceImpl1 implements ReviewService {
             System.out.println("Movie is not released yet");
             return;
         }
+
         movie.getReviewList().add(review);
         user.incrementTotalReviewsAndPromoteUserType();
 

@@ -16,8 +16,9 @@ public class MovieServiceImpl1 implements MovieService {
 
     @Override
     public void addMovie(Movie movie) throws MovieReleasedException {
-        if (movieRepository.getMovies().containsValue(movie))
-            throw new MovieReleasedException("The movie has already been released" + movie.getMovieName());
+
+        if (movieRepository.getMovies()!=null && movieRepository.getMovies().containsValue(movie))
+            throw new MovieReleasedException(movie.getMovieName());
         movieRepository.getMovies().put(movie.getMovieName(), movie);
         movieRepository.toString();
     }

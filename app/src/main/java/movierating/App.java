@@ -3,10 +3,9 @@
  */
 package movierating;
 
-import movierating.exceptions.AddUserException;
+import movierating.exceptions.UserAlreadyExistsException;
 import movierating.exceptions.MovieNotReleasedException;
 import movierating.exceptions.MovieReleasedException;
-import movierating.exceptions.MultipleReviewsException;
 import movierating.models.Movie;
 import movierating.models.User;
 import movierating.repositories.MovieRepository;
@@ -71,7 +70,7 @@ public class App {
                         User user = new User(fields[1]);
                         try {
                             userService.addUser(user);
-                        } catch (AddUserException e) {
+                        } catch (UserAlreadyExistsException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -81,8 +80,6 @@ public class App {
                         int rating = Integer.valueOf(fields[3]);
                         try {
                             reviewService.addReview(userName, movieName, rating);
-                        } catch (MultipleReviewsException e) {
-                            System.out.println(e.getMessage());
                         } catch (MovieNotReleasedException e) {
                             System.out.println(e.getMessage());
                         }

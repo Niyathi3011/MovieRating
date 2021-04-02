@@ -3,6 +3,10 @@
  */
 package movierating;
 
+import movierating.exceptions.AddUserException;
+import movierating.exceptions.MovieNotReleasedException;
+import movierating.exceptions.MovieReleasedException;
+import movierating.exceptions.MultipleReviewsException;
 import movierating.models.Movie;
 import movierating.models.User;
 import movierating.repositories.MovieRepository;
@@ -10,6 +14,7 @@ import movierating.repositories.UserRepository;
 import movierating.services.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class App {
@@ -34,7 +39,7 @@ public class App {
         return testCasesList;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MovieReleasedException {
 
 
         MovieRepository movieRepository = new MovieRepository();
@@ -50,38 +55,52 @@ public class App {
 
             test = test.replaceAll("\\p{P}", " ");
             String[] fields = test.split("");
+            try {
+                switch (fields[0]) {
 
-            switch (fields[0]) {
+                    case "Add Movie": {
+                        Movie movie = new Movie(fields[0], Integer.valueOf(fields[4]), fields[7]);
+                        try {
+                            movieService.addMovie(movie);
+                        } catch (MovieReleasedException e) {
+                            System.out.println(e.getMessage());
+                        }
 
-                case "Add Movie": {
+                    }
+                    case "Add User": {
+                        User user = new User(fields[1]);
+                        try {
+                            userService.addUser(user);
+                        } catch (AddUserException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                    case "add_review": {
+                        String userName = fields[1];
+                        String movieName = fields[2];
+                        int rating = Integer.valueOf(fields[3]);
+                        try {
+                            reviewService.addReview(userName, movieName, rating);
+                        } catch (MultipleReviewsException e) {
+                            System.out.println(e.getMessage());
+                        } catch (MovieNotReleasedException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
 
-                    Movie movie = new Movie(fields[0], Integer.valueOf(fields[4]), fields[7]);
-                    movieService.addMovie(movie);
+                    case "AverageReviewScoreByYear": {
+                        int releaseYear = Integer.valueOf(fields[1]);
+                        averageReviewScoreByYear.getAverageReviewScoreByYear(releaseYear);
+                    }
+
+                    case "AverageReviewScoreByMovie": {
+                        String movieName = fields[1];
+                        averageReviewScoreForMovie.getAverageReviewScoreForMovie(movieName);
+                    }
+
                 }
-                case "Add User": {
-                    User user = new User(fields[1]);
-                    userService.addUser(user);
-                }
-                case "add_review": {
-                    String userName = fields[1];
-                    String movieName = fields[2];
-                    int rating = Integer.valueOf(fields[3]);
-                    reviewService.addReview(userName, movieName, rating);
-                }
-            }
-
-            switch (fields[0]) {
-
-                case "AverageReviewScoreByYear": {
-                    int releaseYear = Integer.valueOf(fields[1]);
-                    averageReviewScoreByYear.getAverageReviewScoreByYear(releaseYear);
-                }
-
-                case "AverageReviewScoreByMovie": {
-                    String movieName = fields[1];
-                    averageReviewScoreForMovie.getAverageReviewScoreForMovie(movieName);
-                }
-
+            } catch (InputMismatchException e) {
+                System.out.println(e.getMessage());
             }
 
         }

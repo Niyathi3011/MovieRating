@@ -1,5 +1,6 @@
 package movierating.services;
 
+import movierating.exceptions.AddUserException;
 import movierating.models.User;
 import movierating.repositories.UserRepository;
 
@@ -12,7 +13,9 @@ public class UserServiceImpl1 implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(User user) throws AddUserException {
+        if (userRepository.getUsers().containsValue(user))
+            throw new AddUserException("He is already a user of this Service" + user.getUserName());
         this.userRepository.getUsers().put(user.getUserName(), user);
     }
 }

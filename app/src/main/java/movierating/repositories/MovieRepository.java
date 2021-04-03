@@ -16,7 +16,14 @@ public class MovieRepository {
         this.movies = new HashMap<>();
     }
 
-    public Map<String,Movie> getMovies() {
+    public Map<String, Movie> getMovies() {
         return movies;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieRepository{" +
+                "movies=" + movies +
+                '}';
     }
 }

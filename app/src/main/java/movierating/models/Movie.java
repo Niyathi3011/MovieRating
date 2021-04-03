@@ -12,7 +12,8 @@ public class Movie {
     private int totalReviewScore;
 
 
-    public Movie(String movieName, int releaseYear, String genre) {
+    public Movie(String movieName, Integer releaseYear, String genre) {
+        System.out.println("movie instance is called");
         this.movieName = movieName;
         this.releaseYear = releaseYear;
         this.genre = genre;

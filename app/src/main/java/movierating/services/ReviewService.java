@@ -1,11 +1,8 @@
 package movierating.services;
 
-import movierating.models.Movie;
-import movierating.models.Review;
-import movierating.repositories.MovieRepository;
-import movierating.repositories.UserRepository;
+import movierating.exceptions.MovieNotReleasedException;
 
 public interface ReviewService {
 
-    public void addReview(String userName, String movieName, int rating);
+    public void addReview(String userName, String movieName, int rating) throws MovieNotReleasedException;
 }

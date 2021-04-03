@@ -1,5 +1,6 @@
 package movierating.services;
 
+import movierating.exceptions.MovieNotReleasedException;
 import movierating.models.Movie;
 import movierating.models.Review;
 import movierating.models.User;
@@ -19,7 +20,7 @@ public class ReviewServiceImpl1 implements ReviewService {
 
 
     @Override
-    public void addReview(String userName, String movieName, int rating) {
+    public void addReview(String userName, String movieName, int rating) throws MovieNotReleasedException {
 
         User user;
         if (this.userRepository.getUsers() != null && this.userRepository.getUsers().containsKey(userName)) {
@@ -34,9 +35,9 @@ public class ReviewServiceImpl1 implements ReviewService {
         if (movieRepository.getMovies() != null && movieRepository.getMovies().containsKey(movieName))
             movie = this.movieRepository.getMovies().get(movieName);
         else {
-            System.out.println("Movie is not released yet");
-            return;
+            throw new MovieNotReleasedException(movieName);
         }
+
 
         movie.getReviewList().add(review);
 

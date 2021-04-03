@@ -35,7 +35,7 @@ public class ReviewServiceImpl1 implements ReviewService {
         if (movieRepository.getMovies() != null && movieRepository.getMovies().containsKey(movieName))
             movie = this.movieRepository.getMovies().get(movieName);
         else {
-            throw new MovieNotReleasedException("Movie is not yet Released!!");
+            throw new MovieNotReleasedException();
         }
 
 

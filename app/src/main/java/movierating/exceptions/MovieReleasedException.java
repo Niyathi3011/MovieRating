@@ -1,7 +1,7 @@
 package movierating.exceptions;
 
 public class MovieReleasedException extends Exception {
-    public MovieReleasedException(String message) {
-        super("Movie Already Released" + message);
+    public MovieReleasedException(String userName) {
+        super("Movie Already Released" + userName);
     }
 }
